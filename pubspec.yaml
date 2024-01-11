@@ -1,6 +1,6 @@
 name: single_value_charts
 description: "A Flutter package for rendering versatile and customizable single value charts. Ideal for dashboards, analytics, and data visualization tasks. Supports a wide range of chart types like trend indicators, status charts, and more."
-version: 0.0.1
+version: 1.0.0
 homepage:
 
 environment:
