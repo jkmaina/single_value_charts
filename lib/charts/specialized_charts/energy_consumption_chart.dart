@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:single_value_charts/abstracts/single_value_chart.dart';
+import 'package:single_value_charts/customization/chart_theme_data.dart';
+import 'package:single_value_charts/widgets/chart_card.dart';
+
+class EnergyConsumptionChart extends SingleValueChart {
+  final double consumption; // Energy consumption value
+  final String period; // Period of consumption (e.g., 'Monthly', 'Yearly')
+  final ChartThemeData? themeData;
+
+  EnergyConsumptionChart({
+    required String label,
+    required this.consumption,
+    required this.period,
+    String unit = 'kWh', // Default unit for energy consumption
+    this.themeData,
+  }) : super(label: label, value: consumption, unit: unit);
+
+  @override
+  Widget buildChart() {
+    // Define default theme data
+    const defaultThemeData = ChartThemeData(
+      backgroundColor: Colors.white,
+      labelStyle: TextStyle(color: Colors.black, fontSize: 16),
+      valueStyle: TextStyle(
+          fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+      unitStyle: TextStyle(color: Colors.grey, fontSize: 14),
+    );
+
+    TextStyle labelStyle = themeData?.labelStyle ?? defaultThemeData.labelStyle;
+    TextStyle valueStyle = themeData?.valueStyle ?? defaultThemeData.valueStyle;
+
+    return ChartCard(
+      themeData: themeData ?? defaultThemeData,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text('$label ($period)', style: labelStyle),
+          SizedBox(height: 8),
+          Text('$consumption$unit', style: valueStyle),
+          // Additional elements can be added here as needed
+        ],
+      ),
+    );
+  }
+}
