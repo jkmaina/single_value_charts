@@ -36,13 +36,13 @@ TrendIndicatorChart(
 )
 ```
 
-![TrendIndicatorChart Example](main/example/lib/example_images/technical_indicator_chart.png)
+![TrendIndicatorChart Example](https://github.com/jkmaina/single_value_charts/blob/main/example/lib/example_images/technical_indicator_chart.png)
 
 ## Gallery of Chart Types
 
 Here's a preview of our gallery screen showcasing various chart types:
 
-![Gallery Screen](main/example/lib/example_images/example_chart_gallery.png)
+![Gallery Screen](https://github.com/jkmaina/single_value_charts/blob/main/example/lib/example_images/example_chart_gallery.png)
 
 ## API Reference
 
