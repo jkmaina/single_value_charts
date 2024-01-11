@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
@@ -6,9 +8,12 @@ import 'package:single_value_charts/interaction/tool_tip.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class ChangeIndicatorChart extends SingleValueChart {
+    @override
   final double value; // Current value
   final double change; // Change value (can be positive or negative)
+    @override
   final String unit; // Unit of measurement
+    @override
   final ChartThemeData? themeData;
 
   ChangeIndicatorChart({

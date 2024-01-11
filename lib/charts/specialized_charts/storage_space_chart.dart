@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
@@ -8,6 +10,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class StorageSpaceChart extends SingleValueChart {
   final double usedStorage; // Used storage space
   final double totalStorage; // Total available storage space
+    @override
   final ChartThemeData? themeData;
 
   StorageSpaceChart({

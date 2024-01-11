@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
@@ -7,6 +9,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class EnergyConsumptionChart extends SingleValueChart {
   final double consumption; // Energy consumption value
   final String period; // Period of consumption (e.g., 'Monthly', 'Yearly')
+    @override
   final ChartThemeData? themeData;
 
   EnergyConsumptionChart({
@@ -37,7 +40,7 @@ class EnergyConsumptionChart extends SingleValueChart {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('$label ($period)', style: labelStyle),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text('$consumption$unit', style: valueStyle),
           // Additional elements can be added here as needed
         ],

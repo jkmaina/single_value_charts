@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
@@ -8,6 +10,7 @@ class TemperatureGaugeChart extends SingleValueChart {
   final double temperature; // Current temperature value
   final double minTemp; // Minimum scale value for the gauge
   final double maxTemp; // Maximum scale value for the gauge
+    @override
   final ChartThemeData? themeData;
 
   TemperatureGaugeChart({

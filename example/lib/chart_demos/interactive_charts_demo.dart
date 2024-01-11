@@ -90,7 +90,7 @@ class _InteractiveChartsDemoState extends State<InteractiveChartsDemo> {
       ),
     );
 
-    Overlay.of(context)?.insert(_overlayEntry!);
+    Overlay.of(context).insert(_overlayEntry!);
   }
 
   void _hideTooltip() {

@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:single_value_charts/interaction/tool_tip.dart';
@@ -6,8 +8,10 @@ import '../../abstracts/single_value_chart.dart';
 import '../../customization/chart_theme_data.dart';
 
 class NumericValueChart extends SingleValueChart {
+    @override
   final num value;
   final NumberFormat? numberFormat;
+    @override
   final ChartThemeData? themeData;
 
   NumericValueChart({

@@ -1,10 +1,15 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/single_value_charts.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class CustomKpiChart extends SingleValueChart {
+    @override
   final num value;
+    @override
   final ChartThemeData? themeData;
+    @override
   final Color color;
 
   CustomKpiChart({

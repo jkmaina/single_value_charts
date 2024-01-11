@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
@@ -6,6 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class EventCountdownChart extends SingleValueChart {
   final Duration timeUntilEvent;
+    @override
   final ChartThemeData? themeData;
 
   EventCountdownChart({
@@ -36,7 +39,7 @@ class EventCountdownChart extends SingleValueChart {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(label, style: labelStyle),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(formattedTime, style: valueStyle),
         ],
       ),

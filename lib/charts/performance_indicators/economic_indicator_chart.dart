@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/interaction/tool_tip.dart';
@@ -7,6 +9,7 @@ import 'package:single_value_charts/customization/chart_theme_data.dart';
 class EconomicIndicatorChart extends SingleValueChart {
   final double indicatorValue;
   final double maxValue;
+    @override
   final ChartThemeData? themeData;
 
   EconomicIndicatorChart({

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:single_value_charts/customization/chart_theme_data.dart';
 
 class ChartToolTip extends StatelessWidget {
   final String message;

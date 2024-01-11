@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
@@ -7,6 +9,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class MilestoneTrackerChart extends SingleValueChart {
   final int completedMilestones;
   final int totalMilestones;
+    @override
   final ChartThemeData? themeData;
 
   MilestoneTrackerChart({

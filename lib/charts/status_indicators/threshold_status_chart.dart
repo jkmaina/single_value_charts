@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
@@ -5,9 +7,11 @@ import 'package:single_value_charts/interaction/tool_tip.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class ThresholdStatusChart extends SingleValueChart {
+    @override
   final double value; // The value to be displayed
   final double lowThreshold; // Lower threshold value
   final double highThreshold; // Upper threshold value
+    @override
   final ChartThemeData? themeData;
 
   ThresholdStatusChart({
@@ -49,7 +53,7 @@ class ThresholdStatusChart extends SingleValueChart {
                   color: _getValueColor(value, lowThreshold, highThreshold),
                   size: 40),
               const SizedBox(width: 8),
-              Text('${value.toStringAsFixed(1)}', style: valueStyle),
+              Text(value.toStringAsFixed(1), style: valueStyle),
             ],
           ),
         ],

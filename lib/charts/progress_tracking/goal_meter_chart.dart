@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
@@ -7,6 +9,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class GoalMeterChart extends SingleValueChart {
   final double currentProgress; // Current progress towards the goal
   final double targetGoal; // The target goal value
+    @override
   final ChartThemeData? themeData;
 
   GoalMeterChart({

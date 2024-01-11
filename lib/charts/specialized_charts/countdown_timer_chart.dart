@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
@@ -6,6 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class CountdownTimerChart extends SingleValueChart {
   final Duration timeRemaining;
+    @override
   final ChartThemeData? themeData;
 
   CountdownTimerChart({

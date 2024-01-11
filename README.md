@@ -189,6 +189,20 @@ class _InteractiveChartsDemoState extends State<InteractiveChartsDemo> {
 
 Ensure to check out the full implementation in our example directory for more details on interactive chart features.
 
+## Platform Support
+
+Single Value Charts Library is designed to be versatile and adaptable, supporting a wide range of platforms:
+
+- [x] iOS
+- [x] Android
+- [x] Web
+- [x] Windows
+- [x] macOS
+- [x] Linux
+
+This cross-platform compatibility ensures that you can seamlessly integrate our charts into your Flutter applications, regardless of the target platform.
+
+
 ## Troubleshooting
 
 Common issues and their solutions.

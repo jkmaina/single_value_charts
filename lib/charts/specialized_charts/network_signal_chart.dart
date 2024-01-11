@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
@@ -6,6 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class NetworkSignalChart extends SingleValueChart {
   final int signalStrength; // Represents the strength of the network signal
+    @override
   final ChartThemeData? themeData;
 
   NetworkSignalChart({
@@ -35,7 +38,7 @@ class NetworkSignalChart extends SingleValueChart {
         children: [
           // Display the label at the top
           Text(label, style: labelStyle),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           // Display signal bars as icons based on signal strength
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -49,7 +52,7 @@ class NetworkSignalChart extends SingleValueChart {
               );
             }),
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           // Display the signal strength in textual format
           Text('$signalStrength bars', style: valueStyle),
         ],

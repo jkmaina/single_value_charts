@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
@@ -9,6 +11,7 @@ class TrendIndicatorChart extends SingleValueChart {
   final double currentValue; // Current value of the trend
   final String trend; // Trend direction: 'up', 'down', or 'steady'
   final String trendDetails; // Additional details about the trend
+    @override
   final ChartThemeData? themeData;
 
   TrendIndicatorChart({
@@ -24,12 +27,12 @@ class TrendIndicatorChart extends SingleValueChart {
     // Define default theme data
     final defaultThemeData = ChartThemeData(
       backgroundColor: Colors.white,
-      labelStyle: TextStyle(color: Colors.black, fontSize: 16),
+      labelStyle: const TextStyle(color: Colors.black, fontSize: 16),
       valueStyle: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: _getTrendColor(trend)),
-      unitStyle: TextStyle(color: Colors.grey, fontSize: 14),
+      unitStyle: const TextStyle(color: Colors.grey, fontSize: 14),
     );
 
     TextStyle labelStyle = themeData?.labelStyle ?? defaultThemeData.labelStyle;
@@ -42,18 +45,18 @@ class TrendIndicatorChart extends SingleValueChart {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(label, style: labelStyle),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(_getTrendIcon(trend),
                   color: _getTrendColor(trend), size: 24),
-              SizedBox(width: 4),
+              const SizedBox(width: 4),
               Text(NumberFormat.compact().format(currentValue),
                   style: valueStyle),
             ],
           ),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(trendDetails, style: detailStyle),
         ],
       ),

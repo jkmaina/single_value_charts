@@ -11,7 +11,7 @@ class SpecializedChartsDemo extends StatelessWidget {
      AuctionPriceChart(currentBid: 12000, label: 'Auction Price Chart').buildChart(),
             CountdownTimerChart(timeRemaining: const Duration(hours: 4, minutes: 30), label: 'Countdown Timer Chart').buildChart(),
             EnergyConsumptionChart(consumption: 3500, period: 'Days', label: 'EnergyConsumptionChart').buildChart(),
-            EventCountdownChart(timeUntilEvent: Duration(days: 14), label: 'Event Count downChart').buildChart(),
+            EventCountdownChart(timeUntilEvent: const Duration(days: 14), label: 'Event Count downChart').buildChart(),
             HumidityIndicatorChart(humidityPercentage: 45, label: 'Humidity Indicator Chart').buildChart(),
             IncidentReportsChart(incidentCount: 2, label: 'Incident Reports Chart').buildChart(),
             NetworkSignalChart(signalStrength: 4, label: 'Network Signal Chart').buildChart(),

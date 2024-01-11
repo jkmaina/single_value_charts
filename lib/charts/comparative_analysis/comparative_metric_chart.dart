@@ -1,3 +1,5 @@
+// ignore_for_file: overridden_fields
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
@@ -10,6 +12,7 @@ class ComparativeMetricChart extends SingleValueChart {
   final num secondaryValue;
   final String primaryLabel;
   final String secondaryLabel;
+  @override
   final ChartThemeData? themeData;
   final NumberFormat? numberFormat;
 
