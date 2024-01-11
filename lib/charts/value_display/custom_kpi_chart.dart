@@ -42,4 +42,16 @@ class CustomKpiChart extends SingleValueChart {
       ),
     );
   }
+  @override
+  Widget buildTooltip(BuildContext context, Offset globalPosition) {
+    if (!enableTooltip) return Container();
+
+    String tooltipText = '$label: $value $unit';
+    return ChartToolTip(
+      message: tooltipText,
+      top: globalPosition.dy,
+      left: globalPosition.dx,
+      tooltipSettings: tooltipSettings,
+    );
+  }
 }

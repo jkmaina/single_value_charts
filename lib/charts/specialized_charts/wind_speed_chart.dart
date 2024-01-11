@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
+import 'package:single_value_charts/interaction/tool_tip.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class WindSpeedChart extends SingleValueChart {
@@ -46,6 +47,18 @@ class WindSpeedChart extends SingleValueChart {
 
   Widget _buildWindIndicator(double speed) {
     return RotatingWindmillIcon(speed: speed);
+  }
+  @override
+  Widget buildTooltip(BuildContext context, Offset globalPosition) {
+    if (!enableTooltip) return Container();
+
+    String tooltipText = '$label: $value $unit';
+    return ChartToolTip(
+      message: tooltipText,
+      top: globalPosition.dy,
+      left: globalPosition.dx,
+      tooltipSettings: tooltipSettings,
+    );
   }
 }
 
@@ -96,4 +109,5 @@ class RotatingWindmillIconState extends State<RotatingWindmillIcon>
           size: 40), // Replace with an appropriate windmill icon
     );
   }
+  
 }

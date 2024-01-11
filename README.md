@@ -44,9 +44,6 @@ Here's a preview of our gallery screen showcasing various chart types:
 
 ![Gallery Screen](https://github.com/jkmaina/single_value_charts/blob/main/example/lib/example_images/example_chart_gallery.png)
 
-## API Reference
-
-A detailed description of all public classes, methods, properties, and parameters. Include default values and data types.
 
 ## Customizations
 
@@ -121,19 +118,114 @@ By wrapping the chart in a `ConstrainedBox`, you can define the minimum and maxi
 
 ## Interactivity
 
-Explain how to implement interactive features like tooltips and click events.
+### Tooltips
 
-## Performance and Optimization
+Our chart library supports interactive tooltips, enhancing the user experience by providing additional information on user interaction.
 
-Tips on optimizing chart rendering, limitations, and best practices for large datasets.
+#### Enabling Tooltips
+
+To enable tooltips on a chart, you need to set the `enableTooltip` flag to `true` when creating a chart instance. Here's an example:
+
+```dart
+var myChart = ComparativeMetricChart(
+  label: 'Sales Comparison',
+  primaryValue: 12000,
+  secondaryValue: 9500,
+  primaryLabel: 'This Year',
+  secondaryLabel: 'Last Year',
+  enableTooltip: true, // Enable tooltips
+);
+```
+
+#### Customizing Tooltips
+
+You can customize the appearance of tooltips using `TooltipSettings`. This includes settings for background color, text style, and more.
+
+Example:
+
+```dart
+var myChart = ComparativeMetricChart(
+  // ... other parameters ...
+  enableTooltip: true,
+  tooltipSettings: TooltipSettings(
+    backgroundColor: Colors.blue,
+    textStyle: TextStyle(color: Colors.white),
+  ),
+);
+```
+### Interactive Demos
+
+In the `InteractiveChartsDemo` class, we demonstrate how to implement interactive charts with tooltips. This includes handling user tap events to show and hide tooltips appropriately.
+
+```dart
+class InteractiveChartsDemo extends StatefulWidget {
+  // ... StatefulWidget implementation ...
+}
+
+class _InteractiveChartsDemoState extends State<InteractiveChartsDemo> {
+  // ... State implementation including _showTooltip and _hideTooltip methods ...
+}
+```
+
+Ensure to check out the full implementation in our example directory for more details on interactive chart features.
 
 ## Troubleshooting
 
 Common issues and their solutions.
 
+1. Charts Not Rendering Properly
+Description: Sometimes charts might not render as expected.
+Solution: Ensure all required parameters are correctly set. If using custom data models, verify their integrity. Also, check if the parent widget constrains the chart size too much.
+
+2. Performance Issues
+Description: Charts lagging or causing the app to run slowly.
+Solution: Optimize data size and aggregation. Avoid unnecessary state updates. Use RepaintBoundary for static charts.
+3. Tooltip Not Displaying
+
+Description: Tooltips are not showing when they are supposed to.
+Solution: Check if enableTooltip is set to true. Ensure that the tooltip settings are correctly configured. Verify that gesture detection for tooltips is implemented correctly.
+
+4. Customization Not Applied
+Description: Custom styles or settings not reflected in charts.
+Solution: Confirm that the customization parameters are passed correctly to the chart. If using themes, ensure they are correctly scoped in your app.
+
+### Reporting Issues
+If you encounter an issue that's not listed here, or the suggested solutions don't work, please report it on our GitHub Issues page. When reporting an issue, please include:
+
+- A clear and descriptive title
+- Detailed steps to reproduce the problem
+- Flutter version and chart library version
+- Code snippets or a link to a minimal project where the issue is reproducible
+- Any relevant logs or error messages
+
 ## Contribution Guidelines
 
 How to contribute to the package, coding standards, and guidelines for pull requests and issue reporting.
+
+We welcome and appreciate contributions from the community! Whether it's fixing bugs, improving documentation, or suggesting new features, your help is valuable. Here's how you can contribute:
+
+### Getting Started
+Fork the Repository: Start by forking the repository to your own GitHub account.
+Clone the Forked Repository: Clone the repository to your local machine to start working on your changes.
+### Making Contributions
+Choose an Issue: Look for open issues that you are interested in solving. Feel free to ask questions or propose new issues if you have ideas.
+Create a Branch: Create a new branch in your fork for your contribution. Naming it relevantly (e.g., fix/memory-leak, feature/add-new-chart-type) helps identify its purpose.
+Implement Your Changes: Work on the changes in your branch. Make sure you adhere to the coding standards and guidelines of the project.
+Write or Update Tests: Ensure that your changes are properly tested. Update existing tests or write new ones as necessary.
+Document Your Changes: Update the README or documentation to reflect any changes, especially if adding features or making changes that affect users.
+### Submitting a Pull Request
+Commit Your Changes: Commit your changes with a clear and descriptive commit message.
+Push to Your Fork: Push the changes to your forked repository.
+Create a Pull Request: Open a pull request to the main repository. Provide a clear description of the changes and reference any related issues.
+Code Review: Once you've submitted a pull request, maintainers will review your changes. Be open to feedback and make any necessary adjustments.
+Merging: If your changes are approved, a maintainer will merge them into the main repository.
+### Guidelines
+Code Style: Follow the coding style and conventions used in the project.
+Quality: Ensure your code is clean, well-organized, and efficient.
+Testing: Strive to maintain and improve the test coverage of the project.
+Respect and Collaboration: Treat all contributors with respect and collaborate openly.
+### Questions and Discussions
+If you have questions or want to discuss ideas before contributing, feel free to open a discussion in the repository's "Issues" section.
 
 ## License
 

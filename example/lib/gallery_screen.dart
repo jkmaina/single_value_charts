@@ -1,4 +1,5 @@
 import 'package:example/chart_demo_widget.dart';
+import 'package:example/chart_demos/interactive_charts_demo.dart';
 import 'package:example/chart_demos/performance_indicators_charts_demo.dart';
 import 'package:example/chart_demos/progress_tracking_charts_demo.dart';
 import 'package:example/chart_demos/specialized_chart_demo.dart';
@@ -39,6 +40,10 @@ class GalleryScreen extends StatelessWidget {
     ChartDemo(
       title: 'Trend Analysis Charts',
       builder: (context) => const TrendAnalysisChartsDemo(),
+    ),
+    ChartDemo(
+      title: 'Interactive Charts Demo',
+      builder: (context) => const InteractiveChartsDemo(),
     ),
     // Add more ChartDemo instances as you create more demos
   ];

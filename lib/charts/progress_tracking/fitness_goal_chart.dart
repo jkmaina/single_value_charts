@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
+import 'package:single_value_charts/interaction/tool_tip.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class FitnessGoalChart extends SingleValueChart {
@@ -49,6 +50,18 @@ class FitnessGoalChart extends SingleValueChart {
           Text('${progress.toStringAsFixed(1)}/$goal$unit', style: valueStyle),
         ],
       ),
+    );
+  }
+  @override
+  Widget buildTooltip(BuildContext context, Offset globalPosition) {
+    if (!enableTooltip) return Container();
+
+    String tooltipText = '$label: $value $unit';
+    return ChartToolTip(
+      message: tooltipText,
+      top: globalPosition.dy,
+      left: globalPosition.dx,
+      tooltipSettings: tooltipSettings,
     );
   }
 }

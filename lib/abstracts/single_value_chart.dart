@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:single_value_charts/interaction/tool_tip.dart';
 
 import '../customization/chart_theme_data.dart';
 
@@ -13,6 +14,8 @@ abstract class SingleValueChart {
   final VoidCallback? onTap;
   final String? semanticLabel; // For accessibility
   final ChartThemeData? themeData;
+  final TooltipSettings tooltipSettings;
+  final bool enableTooltip;
 
   SingleValueChart(
       {required this.label,
@@ -24,7 +27,9 @@ abstract class SingleValueChart {
       this.padding,
       this.onTap,
       this.semanticLabel,
-      this.themeData});
+      this.themeData,
+      this.enableTooltip = false,
+      this.tooltipSettings = const TooltipSettings()});
 
   // Validation method (optional, based on requirements)
   void validateData() {
@@ -38,4 +43,5 @@ abstract class SingleValueChart {
   Widget buildChart();
 
   // Additional methods or properties can be added as needed
+  Widget buildTooltip(BuildContext context, Offset globalPosition);
 }

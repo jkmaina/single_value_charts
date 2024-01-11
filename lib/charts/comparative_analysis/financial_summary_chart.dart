@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
+import 'package:single_value_charts/interaction/tool_tip.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class FinancialSummaryChart extends SingleValueChart {
@@ -15,9 +16,14 @@ class FinancialSummaryChart extends SingleValueChart {
     required this.amount,
     required this.description,
     String unit = '',
+    bool enableToolTip = false,
     this.themeData,
     this.numberFormat, // Number formatting option
-  }) : super(label: label, value: amount, unit: unit);
+  }) : super(
+            label: label,
+            value: amount,
+            unit: unit,
+            enableTooltip: enableToolTip);
 
   @override
   Widget buildChart() {
@@ -53,6 +59,19 @@ class FinancialSummaryChart extends SingleValueChart {
           Text(description, style: descriptionStyle),
         ],
       ),
+    );
+  }
+
+  @override
+  Widget buildTooltip(BuildContext context, Offset globalPosition) {
+    if (!enableTooltip) return Container();
+
+    String tooltipText = '$label: $value $unit';
+    return ChartToolTip(
+      message: tooltipText,
+      top: globalPosition.dy,
+      left: globalPosition.dx,
+      tooltipSettings: tooltipSettings,
     );
   }
 }
