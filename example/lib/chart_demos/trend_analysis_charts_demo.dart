@@ -20,6 +20,12 @@ class TrendAnalysisChartsDemo extends StatelessWidget {
         trend: 'up',
         trendDetails: '15% increase from last month',
       ).buildChart(),
+      TrendIndicatorChart(
+        label: 'Revenue',
+        currentValue: 20000,
+        trend: 'down',
+        trendDetails: '10% decrease since last month',
+      ).buildChart(),
       // Add more trend analysis chart instances here...
     ];
 
