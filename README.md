@@ -36,7 +36,7 @@ TrendIndicatorChart(
 )
 ```
 
-![TrendIndicatorChart Example](path/to/trend_indicator_example.png)
+![TrendIndicatorChart Example](https://raw.githubusercontent.com/jkmaina/single_value_charts/main/example/lib/example_images/technical_indicator_chart.png)
 
 ### Other Chart Types
 
