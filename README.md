@@ -48,9 +48,76 @@ Here's a preview of our gallery screen showcasing various chart types:
 
 A detailed description of all public classes, methods, properties, and parameters. Include default values and data types.
 
-## Customization
+## Customizations
 
-How users can customize charts (styles, colors, interaction behaviors). Document `ChartThemeData` and other styling classes in detail.
+`single_value_charts` offers extensive customization options to tailor the look and feel of the charts to match your application's design. Below are some examples of customizations you can apply:
+
+### Changing Chart Colors and Styles
+
+Each chart supports customization through `ChartThemeData`, which allows you to modify aspects like color, text style, and more.
+
+#### Example: Customizing a Trend Indicator Chart
+
+```dart
+TrendIndicatorChart(
+  label: 'User Growth',
+  currentValue: 1500,
+  trend: 'up',
+  trendDetails: '15% increase',
+  themeData: ChartThemeData(
+    backgroundColor: Colors.blueGrey[50],
+    labelStyle: TextStyle(fontSize: 18, color: Colors.blueGrey),
+    valueStyle: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.green),
+  ),
+)
+```
+
+This example demonstrates how to change the background color, label, and value styles of a `TrendIndicatorChart`.
+
+### Customizing Chart Interactions
+
+You can also customize the interactive elements of the charts, like tooltips and touch responses.
+
+#### Example: Enabling Tooltips on a Change Indicator Chart
+
+```dart
+ChangeIndicatorChart(
+  label: 'Quarterly Sales',
+  value: 25000,
+  change: 3000,
+  unit: 'USD',
+  enableTooltip: true, // Enable tooltip on touch
+  tooltipSettings: TooltipSettings(
+    tooltipColor: Colors.black,
+    textStyle: TextStyle(color: Colors.white),
+  ),
+)
+```
+
+This example shows how to enable tooltips on a `ChangeIndicatorChart` and customize the tooltip appearance.
+
+### Responsiveness and Layout
+
+Our charts are designed to be responsive, adapting to different screen sizes and orientations.
+
+#### Example: Setting Minimum and Maximum Sizes
+
+```dart
+ConstrainedBox(
+  constraints: BoxConstraints(
+    minWidth: 200,
+    maxWidth: 400,
+    minHeight: 100,
+    maxHeight: 200,
+  ),
+  child: TrendIndicatorChart(
+    // Chart configuration
+  ),
+)
+```
+
+By wrapping the chart in a `ConstrainedBox`, you can define the minimum and maximum size of the chart, ensuring it adapts well to different screen sizes.
+
 
 ## Interactivity
 
