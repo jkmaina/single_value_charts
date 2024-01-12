@@ -9,7 +9,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class FitnessGoalChart extends SingleValueChart {
   final double progress; // Current progress towards the goal
   final double goal; // The set goal
-    @override
+  @override
   final ChartThemeData? themeData;
 
   FitnessGoalChart({
@@ -42,19 +42,20 @@ class FitnessGoalChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           LinearProgressIndicator(
             value: progressPercent,
             backgroundColor: Colors.grey[300],
             valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
           ),
-          const SizedBox(height: 4),
+          const Spacer(),
           Text('${progress.toStringAsFixed(1)}/$goal$unit', style: valueStyle),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

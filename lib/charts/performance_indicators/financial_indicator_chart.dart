@@ -39,16 +39,20 @@ class FinancialIndicatorChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
           Row(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Icon(
                 isIncrease ? Icons.trending_up : Icons.trending_down,
                 color: isIncrease ? Colors.green : Colors.red,
               ),
-              Text(formattedValue, style: valueStyle),
-              Text(unit, style: unitStyle),
+              FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(formattedValue, style: valueStyle)),
+              FittedBox(
+                  fit: BoxFit.contain, child: Text(unit, style: unitStyle)),
             ],
           ),
           // Optionally, add more widgets to represent additional data
@@ -56,6 +60,7 @@ class FinancialIndicatorChart extends SingleValueChart {
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

@@ -4,12 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
 import 'package:single_value_charts/interaction/tool_tip.dart';
+import 'package:single_value_charts/widgets/animated_countdown.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class CountdownTimerChart extends SingleValueChart {
   final Duration timeRemaining;
-    @override
+  @override
   final ChartThemeData? themeData;
+  bool animate = true;
 
   CountdownTimerChart({
     required String label,
@@ -18,7 +20,7 @@ class CountdownTimerChart extends SingleValueChart {
   }) : super(
             label: label,
             value: timeRemaining.inSeconds.toDouble(),
-            unit: 'seconds');
+            unit: 'Time Remaining');
 
   @override
   Widget buildChart() {
@@ -34,29 +36,24 @@ class CountdownTimerChart extends SingleValueChart {
     TextStyle labelStyle = themeData?.labelStyle ?? defaultThemeData.labelStyle;
     TextStyle valueStyle = themeData?.valueStyle ?? defaultThemeData.valueStyle;
 
-    // Format the time remaining for display
-    String formattedTime = _formatDuration(timeRemaining);
-
     return ChartCard(
       themeData: themeData ?? defaultThemeData,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: labelStyle),
-          SizedBox(height: 8),
-          Text(formattedTime, style: valueStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          AnimatedCountdownWidget(
+              initialTime: timeRemaining,
+              animate: animate,
+              textStyle: valueStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(unit, style: labelStyle))
         ],
       ),
     );
   }
 
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
-  }
-@override
+  @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();
 

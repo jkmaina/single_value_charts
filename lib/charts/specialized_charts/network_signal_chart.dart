@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class NetworkSignalChart extends SingleValueChart {
   final int signalStrength; // Represents the strength of the network signal
-    @override
+  @override
   final ChartThemeData? themeData;
 
   NetworkSignalChart({
@@ -37,8 +37,8 @@ class NetworkSignalChart extends SingleValueChart {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Display the label at the top
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           // Display signal bars as icons based on signal strength
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -52,13 +52,16 @@ class NetworkSignalChart extends SingleValueChart {
               );
             }),
           ),
-          const SizedBox(height: 4),
+          const Spacer(),
           // Display the signal strength in textual format
-          Text('$signalStrength bars', style: valueStyle),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('$signalStrength bars', style: valueStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

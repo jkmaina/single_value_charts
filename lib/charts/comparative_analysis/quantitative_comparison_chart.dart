@@ -39,9 +39,9 @@ class QuantitativeComparisonChart extends SingleValueChart {
       backgroundColor: Colors.white,
       labelStyle: TextStyle(color: Colors.black, fontSize: 16),
       valueStyle: TextStyle(
-          fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+          fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue),
       secondaryValueStyle: TextStyle(
-          fontSize: 28, fontWeight: FontWeight.bold, color: Colors.green),
+          fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),
       unitStyle: TextStyle(color: Colors.grey, fontSize: 14),
     );
 
@@ -61,20 +61,21 @@ class QuantitativeComparisonChart extends SingleValueChart {
     return ChartCard(
       themeData: themeData ?? defaultThemeData,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(label, style: labelStyle),
-          const SizedBox(height: 4),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(formattedPrimaryValue, style: primaryValueStyle),
-              const SizedBox(width: 2),
-              const Text('vs'),
-              Text(formattedSecondaryValue, style: secondaryValueStyle),
-            ],
-          ),
-          const SizedBox(height: 2),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(formattedPrimaryValue, style: primaryValueStyle)),
+          const Spacer(),
+          const FittedBox(fit: BoxFit.contain, child: Text('vs')),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(formattedSecondaryValue, style: secondaryValueStyle)),
+          const Spacer(),
           Text(unit, style: unitStyle),
         ],
       ),

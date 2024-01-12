@@ -8,10 +8,10 @@ import '../../abstracts/single_value_chart.dart';
 import '../../customization/chart_theme_data.dart';
 
 class NumericValueChart extends SingleValueChart {
-    @override
+  @override
   final num value;
   final NumberFormat? numberFormat;
-    @override
+  @override
   final ChartThemeData? themeData;
 
   NumericValueChart({
@@ -33,7 +33,7 @@ class NumericValueChart extends SingleValueChart {
     TextStyle valueStyle = themeData?.valueStyle ??
         const ChartThemeData()
             .valueStyle
-            .copyWith(fontSize: 38); // Enlarged for emphasis
+            .copyWith(fontSize: 36); // Enlarged for emphasis
     TextStyle unitStyle =
         themeData?.unitStyle ?? const ChartThemeData().unitStyle;
 
@@ -43,15 +43,18 @@ class NumericValueChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
           const Spacer(),
-          Text(formattedValue, style: valueStyle),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(formattedValue, style: valueStyle)),
           const Spacer(),
-          Text(unit, style: unitStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(unit, style: unitStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

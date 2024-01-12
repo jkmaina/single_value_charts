@@ -10,7 +10,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class StorageSpaceChart extends SingleValueChart {
   final double usedStorage; // Used storage space
   final double totalStorage; // Total available storage space
-    @override
+  @override
   final ChartThemeData? themeData;
 
   StorageSpaceChart({
@@ -42,8 +42,8 @@ class StorageSpaceChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           // Custom graphical representation of storage space
           Stack(
             alignment: Alignment.center,
@@ -54,18 +54,23 @@ class StorageSpaceChart extends SingleValueChart {
                 backgroundColor: Colors.grey[300],
                 valueColor: const AlwaysStoppedAnimation<Color>(Colors.red),
               ),
-              Text('${(usedPercentage * 100).toStringAsFixed(1)}%',
-                  style: valueStyle),
+              FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text('${(usedPercentage * 100).toStringAsFixed(1)}%',
+                      style: valueStyle)),
             ],
           ),
-          const SizedBox(height: 4),
-          Text(
-              'Used: ${NumberFormat.compact().format(usedStorage)} / ${NumberFormat.compact().format(totalStorage)} GB',
-              style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(
+                  'Used: ${NumberFormat.compact().format(usedStorage)} / ${NumberFormat.compact().format(totalStorage)} GB',
+                  style: valueStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

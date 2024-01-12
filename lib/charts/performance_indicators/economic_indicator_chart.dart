@@ -9,7 +9,7 @@ import 'package:single_value_charts/customization/chart_theme_data.dart';
 class EconomicIndicatorChart extends SingleValueChart {
   final double indicatorValue;
   final double maxValue;
-    @override
+  @override
   final ChartThemeData? themeData;
 
   EconomicIndicatorChart({
@@ -37,12 +37,14 @@ class EconomicIndicatorChart extends SingleValueChart {
     return ChartCard(
       themeData: themeData ?? defaultThemeData,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: defaultThemeData.labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(label, style: defaultThemeData.labelStyle)),
+          const Spacer(),
           SizedBox(
-            width: 200,
+            width: double.infinity,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(4),
               child: LinearProgressIndicator(
@@ -52,15 +54,20 @@ class EconomicIndicatorChart extends SingleValueChart {
               ),
             ),
           ),
-          const SizedBox(height: 4),
-          Text('${indicatorValue.toStringAsFixed(1)} / $maxValue',
-              style: valueStyle),
-          const SizedBox(height: 4),
-          Text(unit, style: defaultThemeData.unitStyle)
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('${indicatorValue.toStringAsFixed(1)} / $maxValue',
+                  style: valueStyle)),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(unit, style: defaultThemeData.unitStyle))
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

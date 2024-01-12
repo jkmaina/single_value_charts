@@ -26,6 +26,7 @@ class ComparativeAnalysisChartsDemo extends StatelessWidget {
         secondaryValue: 45000,
         primaryLabel: 'Budget',
         secondaryLabel: 'Actual',
+        unit: 'USD',
       ).buildChart(),
       RankingChart(
         label: 'Leaderboard Position',
@@ -47,6 +48,7 @@ class ComparativeAnalysisChartsDemo extends StatelessWidget {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: 3 / 2, // Adjust the aspect ratio as needed
+            mainAxisExtent: 200, // Maximum item height
           ),
           itemCount: charts.length,
           itemBuilder: (context, index) {

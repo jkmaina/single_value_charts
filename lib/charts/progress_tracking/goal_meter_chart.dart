@@ -9,7 +9,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class GoalMeterChart extends SingleValueChart {
   final double currentProgress; // Current progress towards the goal
   final double targetGoal; // The target goal value
-    @override
+  @override
   final ChartThemeData? themeData;
 
   GoalMeterChart({
@@ -42,20 +42,24 @@ class GoalMeterChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           CircularProgressIndicator(
             value: progressPercent,
             backgroundColor: Colors.grey[300],
             valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
           ),
-          const SizedBox(height: 4),
-          Text('${currentProgress.toStringAsFixed(1)}/$targetGoal$unit',
-              style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(
+                  '${currentProgress.toStringAsFixed(1)}/$targetGoal$unit',
+                  style: valueStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

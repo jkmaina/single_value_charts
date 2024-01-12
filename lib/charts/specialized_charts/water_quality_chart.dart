@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class WaterQualityChart extends SingleValueChart {
   final double purityIndex; // Water purity index value
-    @override
+  @override
   final ChartThemeData? themeData;
 
   WaterQualityChart({
@@ -38,8 +38,8 @@ class WaterQualityChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           // Custom visualization for water purity
           LinearProgressIndicator(
             value: purityIndex / 100,
@@ -47,7 +47,7 @@ class WaterQualityChart extends SingleValueChart {
             valueColor:
                 AlwaysStoppedAnimation<Color>(_getPurityColor(purityIndex)),
           ),
-          const SizedBox(height: 4),
+          const Spacer(),
           Text('${purityIndex.toStringAsFixed(1)}% Purity', style: valueStyle),
         ],
       ),
@@ -64,6 +64,7 @@ class WaterQualityChart extends SingleValueChart {
       return Colors.red; // Low purity
     }
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class TrafficLightIndicatorChart extends SingleValueChart {
   final String status; // The status to be displayed ('red', 'yellow', 'green')
-    @override
+  @override
   final ChartThemeData? themeData;
 
   TrafficLightIndicatorChart({
@@ -23,8 +23,6 @@ class TrafficLightIndicatorChart extends SingleValueChart {
     const defaultThemeData = ChartThemeData(
       backgroundColor: Colors.white,
       labelStyle: TextStyle(color: Colors.black, fontSize: 16),
-      valueStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-      unitStyle: TextStyle(color: Colors.grey, fontSize: 14),
     );
 
     TextStyle labelStyle = themeData?.labelStyle ?? defaultThemeData.labelStyle;
@@ -33,18 +31,18 @@ class TrafficLightIndicatorChart extends SingleValueChart {
       themeData: themeData ?? defaultThemeData,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const SizedBox(height: 8), // Spacing between label and lights
           // Custom traffic light representation
-          Row(
+          Column(
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _buildTrafficLightCircle('red', status),
-              const SizedBox(width: 4),
+              const SizedBox(height: 4), // Spacing between lights
               _buildTrafficLightCircle('yellow', status),
-              const SizedBox(width: 4),
+              const SizedBox(height: 4), // Spacing between lights
               _buildTrafficLightCircle('green', status),
             ],
           ),
@@ -60,15 +58,15 @@ class TrafficLightIndicatorChart extends SingleValueChart {
     switch (colorName) {
       case 'red':
         color = Colors.red;
-        opacity = (currentStatus == 'red') ? 1.0 : 0.3;
+        opacity = (currentStatus == 'red') ? 1.0 : 0.2;
         break;
       case 'yellow':
         color = Colors.yellow;
-        opacity = (currentStatus == 'yellow') ? 1.0 : 0.3;
+        opacity = (currentStatus == 'yellow') ? 1.0 : 0.2;
         break;
       case 'green':
         color = Colors.green;
-        opacity = (currentStatus == 'green') ? 1.0 : 0.3;
+        opacity = (currentStatus == 'green') ? 1.0 : 0.2;
         break;
       default:
         color = Colors.grey;
@@ -76,14 +74,15 @@ class TrafficLightIndicatorChart extends SingleValueChart {
     }
 
     return Container(
-      width: 20,
-      height: 20,
+      width: 20, // Diameter of the circle
+      height: 20, // Diameter of the circle
       decoration: BoxDecoration(
         color: color.withOpacity(opacity),
         shape: BoxShape.circle,
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

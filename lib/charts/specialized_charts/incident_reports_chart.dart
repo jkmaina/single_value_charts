@@ -8,14 +8,16 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class IncidentReportsChart extends SingleValueChart {
   final int incidentCount; // Total number of incidents to display
-    @override
+  @override
   final ChartThemeData? themeData;
-
+  @override
+  final String unit;
   IncidentReportsChart({
     required String label,
     required this.incidentCount,
+    this.unit = 'Incidents',
     this.themeData,
-  }) : super(label: label, value: incidentCount.toDouble(), unit: '');
+  }) : super(label: label, value: incidentCount.toDouble(), unit: unit);
 
   @override
   Widget buildChart() {
@@ -24,7 +26,7 @@ class IncidentReportsChart extends SingleValueChart {
       backgroundColor: Colors.white,
       labelStyle: TextStyle(color: Colors.black, fontSize: 16),
       valueStyle: TextStyle(
-          fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red),
+          fontSize: 36, fontWeight: FontWeight.bold, color: Colors.red),
       unitStyle: TextStyle(color: Colors.grey, fontSize: 14),
     );
 
@@ -37,15 +39,20 @@ class IncidentReportsChart extends SingleValueChart {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Display the label at the top
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           // Display the number of incidents
-          Text('$incidentCount', style: valueStyle),
-          // Additional design elements can be added here
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('$incidentCount', style: valueStyle)),
+          const Spacer(),
+          // Display the unit at the bottom
+          FittedBox(fit: BoxFit.contain, child: Text(unit, style: labelStyle))
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

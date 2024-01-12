@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class WindSpeedChart extends SingleValueChart {
   final double windSpeed; // Wind speed value
-    @override
+  @override
   final ChartThemeData? themeData;
 
   WindSpeedChart({
@@ -37,12 +37,15 @@ class WindSpeedChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           // Custom wind indicator visualization (e.g., animated windmill icon)
           _buildWindIndicator(windSpeed),
-          const SizedBox(height: 4),
-          Text('${windSpeed.toStringAsFixed(1)} $unit', style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('${windSpeed.toStringAsFixed(1)} $unit',
+                  style: valueStyle)),
         ],
       ),
     );
@@ -51,6 +54,7 @@ class WindSpeedChart extends SingleValueChart {
   Widget _buildWindIndicator(double speed) {
     return RotatingWindmillIcon(speed: speed);
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();
@@ -112,5 +116,4 @@ class RotatingWindmillIconState extends State<RotatingWindmillIcon>
           size: 40), // Replace with an appropriate windmill icon
     );
   }
-  
 }

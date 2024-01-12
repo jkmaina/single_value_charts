@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class ProductionEfficiencyChart extends SingleValueChart {
   final double efficiency;
-    @override
+  @override
   final ChartThemeData? themeData;
 
   ProductionEfficiencyChart({
@@ -37,19 +37,23 @@ class ProductionEfficiencyChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           CircularProgressIndicator(
             value: efficiency / 100, // Convert to a scale of 0 to 1
             backgroundColor: Colors.grey[300],
             valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
-          const SizedBox(height: 4),
-          Text('${efficiency.toStringAsFixed(1)}$unit', style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('${efficiency.toStringAsFixed(1)}$unit',
+                  style: valueStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

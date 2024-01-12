@@ -10,7 +10,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class UsageMeterChart extends SingleValueChart {
   final double currentUsage; // Current usage value
   final double maxUsage; // Maximum usage capacity
-    @override
+  @override
   final ChartThemeData? themeData;
 
   UsageMeterChart({
@@ -42,8 +42,8 @@ class UsageMeterChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           // Custom meter-like visualization
           LinearProgressIndicator(
             value: usagePercentage,
@@ -51,14 +51,17 @@ class UsageMeterChart extends SingleValueChart {
             valueColor: AlwaysStoppedAnimation<Color>(
                 usagePercentage > 0.75 ? Colors.red : Colors.green),
           ),
-          const SizedBox(height: 4),
-          Text(
-              '${(usagePercentage * 100).toStringAsFixed(1)}% used of ${NumberFormat.compact().format(maxUsage)}',
-              style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(
+                  '${(usagePercentage * 100).toStringAsFixed(1)}% used of ${NumberFormat.compact().format(maxUsage)}',
+                  style: valueStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

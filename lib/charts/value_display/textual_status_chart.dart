@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class TextualStatusChart extends SingleValueChart {
   final String status;
-    @override
+  @override
   final ChartThemeData? themeData;
   final Color statusColor;
 
@@ -46,6 +46,7 @@ class TextualStatusChart extends SingleValueChart {
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

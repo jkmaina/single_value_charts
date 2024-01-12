@@ -9,7 +9,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class MilestoneTrackerChart extends SingleValueChart {
   final int completedMilestones;
   final int totalMilestones;
-    @override
+  @override
   final ChartThemeData? themeData;
 
   MilestoneTrackerChart({
@@ -39,8 +39,8 @@ class MilestoneTrackerChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(totalMilestones, (index) {
@@ -51,13 +51,16 @@ class MilestoneTrackerChart extends SingleValueChart {
               );
             }),
           ),
-          const SizedBox(height: 4),
-          Text('$completedMilestones/$totalMilestones Completed',
-              style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('$completedMilestones/$totalMilestones Completed',
+                  style: valueStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

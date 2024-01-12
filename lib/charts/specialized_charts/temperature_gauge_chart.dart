@@ -10,7 +10,7 @@ class TemperatureGaugeChart extends SingleValueChart {
   final double temperature; // Current temperature value
   final double minTemp; // Minimum scale value for the gauge
   final double maxTemp; // Maximum scale value for the gauge
-    @override
+  @override
   final ChartThemeData? themeData;
 
   TemperatureGaugeChart({
@@ -44,8 +44,8 @@ class TemperatureGaugeChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           // Custom gauge visualization
           Stack(
             alignment: Alignment.center,
@@ -62,12 +62,15 @@ class TemperatureGaugeChart extends SingleValueChart {
               Text('${temperature.toStringAsFixed(1)}°C', style: valueStyle),
             ],
           ),
-          const SizedBox(height: 4),
-          Text('Range: $minTemp°C to $maxTemp°C', style: unitStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('Range: $minTemp°C to $maxTemp°C', style: unitStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

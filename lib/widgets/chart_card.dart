@@ -22,8 +22,8 @@ class ChartCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: padding ?? const EdgeInsets.all(12),
-        margin: margin ?? const EdgeInsets.all(8),
+        padding: padding ?? const EdgeInsets.all(4),
+        margin: margin ?? const EdgeInsets.all(4),
         decoration: BoxDecoration(
           color: themeData.backgroundColor,
           borderRadius: themeData.borderRadius,
@@ -33,7 +33,7 @@ class ChartCard extends StatelessWidget {
             constraints: const BoxConstraints(
               maxHeight: 300,
             ),
-            child: IntrinsicHeight(child: child)),
+            child: IntrinsicWidth(child: IntrinsicHeight(child: child))),
       ),
     );
   }

@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class StatusIndicatorChart extends SingleValueChart {
   final String status; // The status message to be displayed
-    @override
+  @override
   final ChartThemeData? themeData;
 
   StatusIndicatorChart({
@@ -23,7 +23,10 @@ class StatusIndicatorChart extends SingleValueChart {
     final defaultThemeData = ChartThemeData(
       backgroundColor: Colors.white,
       labelStyle: const TextStyle(color: Colors.black, fontSize: 16),
-      valueStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: _getStatusColor(status)),
+      valueStyle: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: _getStatusColor(status)),
       unitStyle: const TextStyle(color: Colors.grey, fontSize: 14),
     );
 
@@ -35,15 +38,19 @@ class StatusIndicatorChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          Text(label,
+              style: labelStyle), // Removed FittedBox for better text scaling
+          const SizedBox(height: 8), // Spacing between label and status icon
           // Custom representation of the status
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(_getStatusIcon(status), color: _getStatusColor(status), size: 40),
-              const SizedBox(width: 8),
-              Text(status, style: valueStyle),
+              Icon(_getStatusIcon(status),
+                  color: _getStatusColor(status), size: 40),
+              const SizedBox(width: 8), // Spacing between icon and text
+              Text(status,
+                  style:
+                      valueStyle), // Removed FittedBox for better text scaling
             ],
           ),
         ],
@@ -78,6 +85,7 @@ class StatusIndicatorChart extends SingleValueChart {
         return Colors.grey; // Grey for other statuses
     }
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

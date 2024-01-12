@@ -10,7 +10,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class PopulationCountChart extends SingleValueChart {
   final int malePopulation; // Male population count
   final int femalePopulation; // Female population count
-    @override
+  @override
   final ChartThemeData? themeData;
 
   PopulationCountChart({
@@ -21,7 +21,7 @@ class PopulationCountChart extends SingleValueChart {
   }) : super(
             label: label,
             value: malePopulation + femalePopulation.toDouble(),
-            unit: 'people');
+            unit: 'People');
 
   @override
   Widget buildChart() {
@@ -47,8 +47,9 @@ class PopulationCountChart extends SingleValueChart {
       themeData: themeData ?? defaultThemeData,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: labelStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -56,20 +57,26 @@ class PopulationCountChart extends SingleValueChart {
               // Male population icon and count
               const Icon(Icons.male, color: Colors.blue),
               Text(formattedMalePopulation, style: valueStyle),
-              const SizedBox(width: 16),
+              const Spacer(),
               // Female population icon and count
               const Icon(Icons.female, color: Colors.pink),
-              Text(formattedFemalePopulation, style: valueStyle),
+              FittedBox(
+                  fit: BoxFit.contain,
+                  child: Text(formattedFemalePopulation, style: valueStyle)),
             ],
           ),
           // Total population count
-          Text(
-              'Total: ${NumberFormat.compact().format(malePopulation + femalePopulation)}',
-              style: valueStyle),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(
+                  'Total: ${NumberFormat.compact().format(malePopulation + femalePopulation)}',
+                  style: valueStyle)),
+          FittedBox(fit: BoxFit.contain, child: Text(unit, style: labelStyle))
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

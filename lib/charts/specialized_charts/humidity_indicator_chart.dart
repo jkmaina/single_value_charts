@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class HumidityIndicatorChart extends SingleValueChart {
   final double humidityPercentage; // Humidity value in percentage
-    @override
+  @override
   final ChartThemeData? themeData;
 
   HumidityIndicatorChart({
@@ -37,19 +37,23 @@ class HumidityIndicatorChart extends SingleValueChart {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           LinearProgressIndicator(
             value: humidityPercentage / 100, // Convert to a scale of 0 to 1
             backgroundColor: Colors.grey[300],
             valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
-          const SizedBox(height: 4),
-          Text('${humidityPercentage.toStringAsFixed(1)}%', style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('${humidityPercentage.toStringAsFixed(1)}%',
+                  style: valueStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

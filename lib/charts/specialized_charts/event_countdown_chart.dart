@@ -4,18 +4,24 @@ import 'package:flutter/material.dart';
 import 'package:single_value_charts/abstracts/single_value_chart.dart';
 import 'package:single_value_charts/customization/chart_theme_data.dart';
 import 'package:single_value_charts/interaction/tool_tip.dart';
+import 'package:single_value_charts/widgets/animated_countdown.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class EventCountdownChart extends SingleValueChart {
   final Duration timeUntilEvent;
-    @override
+  @override
   final ChartThemeData? themeData;
+  bool animate = true;
 
   EventCountdownChart({
     required String label,
     required this.timeUntilEvent,
     this.themeData,
-  }) : super(label: label, value: timeUntilEvent.inSeconds.toDouble(), unit: 'seconds');
+    String unit = 'days',
+  }) : super(
+            label: label,
+            value: timeUntilEvent.inSeconds.toDouble(),
+            unit: unit);
 
   @override
   Widget buildChart() {
@@ -23,35 +29,32 @@ class EventCountdownChart extends SingleValueChart {
     const defaultThemeData = ChartThemeData(
       backgroundColor: Colors.white,
       labelStyle: TextStyle(color: Colors.black, fontSize: 16),
-      valueStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.red),
+      valueStyle: TextStyle(
+          fontSize: 24, fontWeight: FontWeight.bold, color: Colors.teal),
       unitStyle: TextStyle(color: Colors.grey, fontSize: 14),
     );
 
     TextStyle labelStyle = themeData?.labelStyle ?? defaultThemeData.labelStyle;
     TextStyle valueStyle = themeData?.valueStyle ?? defaultThemeData.valueStyle;
 
-    // Format the time remaining for display
-    String formattedTime = _formatDuration(timeUntilEvent);
-
     return ChartCard(
       themeData: themeData ?? defaultThemeData,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
-          Text(formattedTime, style: valueStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
+          AnimatedCountdownWidget(
+              initialTime: timeUntilEvent,
+              animate: animate,
+              textStyle: valueStyle),
+          const Spacer(),
+          FittedBox(fit: BoxFit.contain, child: Text(unit, style: labelStyle)),
         ],
       ),
     );
   }
 
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
-  }
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

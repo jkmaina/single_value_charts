@@ -8,12 +8,12 @@ import 'package:single_value_charts/interaction/tool_tip.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class ChangeIndicatorChart extends SingleValueChart {
-    @override
+  @override
   final double value; // Current value
   final double change; // Change value (can be positive or negative)
-    @override
+  @override
   final String unit; // Unit of measurement
-    @override
+  @override
   final ChartThemeData? themeData;
 
   ChangeIndicatorChart({
@@ -44,18 +44,22 @@ class ChangeIndicatorChart extends SingleValueChart {
       themeData: themeData ?? defaultThemeData,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          Text(label,
+              style: labelStyle), // Removed FittedBox for better text scaling
+          const SizedBox(height: 8), // Spacing between label and icon
+          // Row for icon and value representation
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(_getChangeIcon(change),
                   color: _getChangeColor(change), size: 24),
-              const SizedBox(width: 4),
+              const SizedBox(width: 8), // Spacing between icon and value
               Text(
                   '${NumberFormat.compact().format(value)} (${_formatChange(change)})',
-                  style: valueStyle),
+                  style:
+                      valueStyle) // Removed FittedBox for better text scaling
             ],
           ),
         ],

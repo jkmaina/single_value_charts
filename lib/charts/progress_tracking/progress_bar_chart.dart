@@ -9,7 +9,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class ProgressBarChart extends SingleValueChart {
   final double progress; // Current progress
   final double goal; // Goal or maximum value for the progress bar
-    @override
+  @override
   final ChartThemeData? themeData;
 
   ProgressBarChart({
@@ -42,19 +42,23 @@ class ProgressBarChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           LinearProgressIndicator(
             value: progressPercent,
             backgroundColor: Colors.grey[300],
             valueColor: const AlwaysStoppedAnimation<Color>(Colors.green),
           ),
-          const SizedBox(height: 4),
-          Text('${progress.toStringAsFixed(1)}/$goal$unit', style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('${progress.toStringAsFixed(1)}/$goal$unit',
+                  style: valueStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

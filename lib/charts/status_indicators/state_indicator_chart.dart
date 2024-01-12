@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class StateIndicatorChart extends SingleValueChart {
   final String state; // Operational state or status
-    @override
+  @override
   final ChartThemeData? themeData;
 
   StateIndicatorChart({
@@ -38,16 +38,18 @@ class StateIndicatorChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const SizedBox(
+              height: 8), // Spacing between label and state indicator
           // Custom state indicator representation
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(_getStateIcon(state),
                   color: _getStateColor(state), size: 40),
-              const SizedBox(width: 8),
-              Text(state, style: valueStyle),
+              const SizedBox(width: 8), // Spacing between icon and text
+              FittedBox(
+                  fit: BoxFit.contain, child: Text(state, style: valueStyle)),
             ],
           ),
         ],
@@ -82,6 +84,7 @@ class StateIndicatorChart extends SingleValueChart {
         return Colors.grey; // Grey for unknown states
     }
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

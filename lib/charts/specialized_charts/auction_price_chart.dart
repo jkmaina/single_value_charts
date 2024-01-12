@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class AuctionPriceChart extends SingleValueChart {
   final double currentBid;
-    @override
+  @override
   final ChartThemeData? themeData;
 
   AuctionPriceChart({
@@ -36,15 +36,22 @@ class AuctionPriceChart extends SingleValueChart {
       themeData: themeData ?? defaultThemeData,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: labelStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
           const SizedBox(height: 8),
-          Text('\$$currentBid', style: valueStyle),
-          Text(unit, style: themeData?.unitStyle ?? defaultThemeData.unitStyle),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('\$$currentBid', style: valueStyle)),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(unit,
+                  style: themeData?.unitStyle ?? defaultThemeData.unitStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

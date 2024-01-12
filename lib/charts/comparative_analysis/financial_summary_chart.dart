@@ -54,12 +54,16 @@ class FinancialSummaryChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 4),
-          Text('\$$formattedAmount',
-              style: amountStyle), // Example formatting for currency
-          const SizedBox(height: 2),
-          Text(description, style: descriptionStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('\$$formattedAmount',
+                  style: amountStyle)), // Example formatting for currency
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(description, style: descriptionStyle)),
         ],
       ),
     );

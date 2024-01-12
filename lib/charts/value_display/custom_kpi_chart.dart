@@ -5,11 +5,11 @@ import 'package:single_value_charts/single_value_charts.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class CustomKpiChart extends SingleValueChart {
-    @override
+  @override
   final num value;
-    @override
+  @override
   final ChartThemeData? themeData;
-    @override
+  @override
   final Color color;
 
   CustomKpiChart({
@@ -38,15 +38,18 @@ class CustomKpiChart extends SingleValueChart {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 4), // Space between label and KPI value
-          Text(value.toString(), style: valueStyle),
-          const SizedBox(height: 2), // Space between KPI value and unit
-          Text(unit, style: unitStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(value.toString(), style: valueStyle)),
+          const Spacer(),
+          FittedBox(fit: BoxFit.contain, child: Text(unit, style: unitStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

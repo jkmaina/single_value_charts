@@ -10,7 +10,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class CustomerSatisfactionChart extends SingleValueChart {
   final double satisfactionScore;
   final int maxScore;
-    @override
+  @override
   final ChartThemeData? themeData;
   final NumberFormat? numberFormat; // Optional number formatting
 
@@ -30,7 +30,7 @@ class CustomerSatisfactionChart extends SingleValueChart {
       backgroundColor: Colors.white,
       labelStyle: TextStyle(color: Colors.black, fontSize: 16),
       valueStyle: TextStyle(
-          fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+          fontSize: 22, fontWeight: FontWeight.bold, color: Colors.blue),
       unitStyle: TextStyle(color: Colors.grey, fontSize: 14),
     );
 
@@ -45,8 +45,9 @@ class CustomerSatisfactionChart extends SingleValueChart {
       themeData: themeData ?? defaultThemeData,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Customer Satisfaction', style: labelStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: List.generate(maxScore, (index) {
@@ -57,13 +58,15 @@ class CustomerSatisfactionChart extends SingleValueChart {
               );
             }),
           ),
-          Text('$formattedScore / $maxScore', style: scoreStyle),
-          const Spacer(),
-          Text(unit, style: unitStyle),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('$formattedScore / $maxScore', style: scoreStyle)),
+          FittedBox(fit: BoxFit.contain, child: Text(unit, style: unitStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

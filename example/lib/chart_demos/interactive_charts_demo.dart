@@ -61,6 +61,7 @@ class _InteractiveChartsDemoState extends State<InteractiveChartsDemo> {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: 3 / 2,
+            mainAxisExtent: 200, 
           ),
           itemCount: charts.length,
           itemBuilder: (context, index) {

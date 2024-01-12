@@ -11,7 +11,7 @@ class TrendIndicatorChart extends SingleValueChart {
   final double currentValue; // Current value of the trend
   final String trend; // Trend direction: 'up', 'down', or 'steady'
   final String trendDetails; // Additional details about the trend
-    @override
+  @override
   final ChartThemeData? themeData;
 
   TrendIndicatorChart({
@@ -43,21 +43,26 @@ class TrendIndicatorChart extends SingleValueChart {
       themeData: themeData ?? defaultThemeData,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          Text(label,
+              style: labelStyle), // Removed FittedBox for better text scaling
+          const SizedBox(height: 8), // Spacing between label and icon
+          // Row for icon and value representation
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(_getTrendIcon(trend),
                   color: _getTrendColor(trend), size: 24),
-              const SizedBox(width: 4),
+              const SizedBox(width: 8), // Spacing between icon and value
               Text(NumberFormat.compact().format(currentValue),
-                  style: valueStyle),
+                  style:
+                      valueStyle) // Removed FittedBox for better text scaling
             ],
           ),
-          const SizedBox(height: 4),
-          Text(trendDetails, style: detailStyle),
+          const SizedBox(height: 8), // Spacing between value and details
+          Text(trendDetails,
+              style: detailStyle), // Removed FittedBox for better text scaling
         ],
       ),
     );
@@ -84,6 +89,7 @@ class TrendIndicatorChart extends SingleValueChart {
         return Colors.grey;
     }
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

@@ -31,7 +31,7 @@ class ChartThemeData {
     this.labelStyle =
         const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
     this.valueStyle =
-        const TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+        const TextStyle(fontSize: 36, fontWeight: FontWeight.bold,),
     this.secondaryValueStyle =
         const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
     this.unitStyle = const TextStyle(fontSize: 14),

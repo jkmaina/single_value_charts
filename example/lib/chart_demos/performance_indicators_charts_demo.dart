@@ -58,6 +58,7 @@ class PerformanceIndicatorsChartsDemo extends StatelessWidget {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: 3.5 / 2, // Adjust the aspect ratio as needed
+            mainAxisExtent: 200,
           ),
           itemCount: charts.length,
           itemBuilder: (context, index) {

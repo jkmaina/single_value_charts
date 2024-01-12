@@ -47,12 +47,15 @@ class RankingChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 4),
-          Text(formattedRank, style: rankStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(formattedRank, style: rankStyle)),
           if (category.isNotEmpty) ...[
-            const SizedBox(height: 2),
-            Text(category, style: unitStyle),
+            const Spacer(),
+            FittedBox(
+                fit: BoxFit.contain, child: Text(category, style: unitStyle)),
           ],
         ],
       ),

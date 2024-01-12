@@ -9,7 +9,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class EnergyConsumptionChart extends SingleValueChart {
   final double consumption; // Energy consumption value
   final String period; // Period of consumption (e.g., 'Monthly', 'Yearly')
-    @override
+  @override
   final ChartThemeData? themeData;
 
   EnergyConsumptionChart({
@@ -39,14 +39,23 @@ class EnergyConsumptionChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('$label ($period)', style: labelStyle),
-          const SizedBox(height: 8),
-          Text('$consumption$unit', style: valueStyle),
-          // Additional elements can be added here as needed
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('$label ($period)', style: labelStyle)),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('$consumption$unit', style: valueStyle)),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(unit,
+                  style: themeData?.unitStyle ?? defaultThemeData.unitStyle))
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

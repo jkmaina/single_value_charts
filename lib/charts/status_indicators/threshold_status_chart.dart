@@ -7,11 +7,11 @@ import 'package:single_value_charts/interaction/tool_tip.dart';
 import 'package:single_value_charts/widgets/chart_card.dart';
 
 class ThresholdStatusChart extends SingleValueChart {
-    @override
+  @override
   final double value; // The value to be displayed
   final double lowThreshold; // Lower threshold value
   final double highThreshold; // Upper threshold value
-    @override
+  @override
   final ChartThemeData? themeData;
 
   ThresholdStatusChart({
@@ -41,21 +41,32 @@ class ThresholdStatusChart extends SingleValueChart {
     return ChartCard(
       themeData: themeData ?? defaultThemeData,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment
+            .center, // Aligns children to the center of the column
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
-          // Custom representation of the threshold status
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(_getThresholdIcon(value, lowThreshold, highThreshold),
-                  color: _getValueColor(value, lowThreshold, highThreshold),
-                  size: 40),
-              const SizedBox(width: 8),
-              Text(value.toStringAsFixed(1), style: valueStyle),
-            ],
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const SizedBox(height: 10), // Spacing for better layout
+          // Centering the row of icons and values
+          Center(
+            child: Row(
+              mainAxisSize: MainAxisSize
+                  .min, // This ensures the row only takes as much space as needed
+              children: [
+                Icon(_getThresholdIcon(value, lowThreshold, highThreshold),
+                    color: _getValueColor(value, lowThreshold, highThreshold),
+                    size: 40),
+                const SizedBox(width: 10), // Spacing between icon and value
+                FittedBox(
+                    fit: BoxFit.contain,
+                    child: Text(value.toStringAsFixed(1), style: valueStyle)),
+              ],
+            ),
           ),
+          const SizedBox(height: 10), // Spacing for better layout
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('Thresholds: $lowThreshold - $highThreshold',
+                  style: valueStyle)),
         ],
       ),
     );
@@ -81,6 +92,7 @@ class ThresholdStatusChart extends SingleValueChart {
       return Colors.green; // Color for within threshold
     }
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

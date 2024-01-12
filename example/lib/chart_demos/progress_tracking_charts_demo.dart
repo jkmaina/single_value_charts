@@ -36,10 +36,11 @@ class ProgressTrackingChartsDemo extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            maxCrossAxisExtent: 500, // Maximum item width
+            maxCrossAxisExtent: 400, // Maximum item width
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: 6 / 2, // Adjust the aspect ratio as needed
+            mainAxisExtent: 200,
           ),
           itemCount: charts.length,
           itemBuilder: (context, index) {

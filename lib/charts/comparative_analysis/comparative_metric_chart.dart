@@ -24,10 +24,13 @@ class ComparativeMetricChart extends SingleValueChart {
     this.numberFormat,
     this.primaryLabel = '',
     this.secondaryLabel = '',
-    
     String unit = '',
     this.themeData,
-  }) : super(label: label, value: primaryValue, unit: unit, enableTooltip: enableToolTip);
+  }) : super(
+            label: label,
+            value: primaryValue,
+            unit: unit,
+            enableTooltip: enableToolTip);
 
   @override
   Widget buildChart() {
@@ -42,7 +45,7 @@ class ComparativeMetricChart extends SingleValueChart {
       backgroundColor: Colors.white,
       labelStyle: TextStyle(color: Colors.black, fontSize: 16),
       valueStyle: TextStyle(
-          fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+          fontSize: 22, fontWeight: FontWeight.bold, color: Colors.blue),
       unitStyle: TextStyle(color: Colors.grey, fontSize: 14),
     );
 
@@ -55,12 +58,17 @@ class ComparativeMetricChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 4),
-          Text('$primaryLabel: $primaryFormatedValue', style: valueStyle),
-          Text('$secondaryLabel: $secondaryFormatedValue',
-              style: valueStyle.copyWith(color: Colors.green)),
-          const SizedBox(height: 2),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('$primaryLabel: $primaryFormatedValue',
+                  style: valueStyle)),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('$secondaryLabel: $secondaryFormatedValue',
+                  style: valueStyle.copyWith(color: Colors.green))),
+          const Spacer(),
           Text(unit, style: unitStyle),
         ],
       ),

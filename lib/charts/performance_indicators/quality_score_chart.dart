@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class QualityScoreChart extends SingleValueChart {
   final double score;
-    @override
+  @override
   final ChartThemeData? themeData;
 
   QualityScoreChart({
@@ -37,20 +37,24 @@ class QualityScoreChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           CircularProgressIndicator(
             strokeWidth: 10,
             value: score / 100, // Convert score to a scale of 0 to 1
             backgroundColor: Colors.grey[300],
             valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
-          const SizedBox(height: 4),
-          Text('${score.toStringAsFixed(1)}$unit', style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child:
+                  Text('${score.toStringAsFixed(1)}$unit', style: valueStyle)),
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

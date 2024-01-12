@@ -10,7 +10,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class SocialMediaReachChart extends SingleValueChart {
   final int followersCount; // Number of followers or likes
   final String platform; // Name of the social media platform
-    @override
+  @override
   final ChartThemeData? themeData;
 
   SocialMediaReachChart({
@@ -41,13 +41,15 @@ class SocialMediaReachChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
-          const SizedBox(height: 8),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
+          const Spacer(),
           Icon(_getPlatformIcon(platform),
               color: _getPlatformColor(platform), size: 40),
-          const SizedBox(height: 4),
-          Text(NumberFormat.compact().format(followersCount),
-              style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(NumberFormat.compact().format(followersCount),
+                  style: valueStyle)),
         ],
       ),
     );
@@ -78,6 +80,7 @@ class SocialMediaReachChart extends SingleValueChart {
         return Colors.grey;
     }
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

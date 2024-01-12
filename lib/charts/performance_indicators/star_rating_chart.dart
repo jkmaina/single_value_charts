@@ -9,7 +9,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 class StarRatingChart extends SingleValueChart {
   final double rating; // Assuming rating is out of 5
   final int totalStars;
-    @override
+  @override
   final ChartThemeData? themeData;
 
   StarRatingChart({
@@ -23,12 +23,14 @@ class StarRatingChart extends SingleValueChart {
   @override
   Widget buildChart() {
     // Define default theme data
-    const defaultThemeData = ChartThemeData(
+    var defaultThemeData = ChartThemeData(
       backgroundColor: Colors.white,
-      labelStyle: TextStyle(color: Colors.black, fontSize: 16),
+      labelStyle: const TextStyle(color: Colors.black, fontSize: 16),
       valueStyle: TextStyle(
-          fontSize: 24, fontWeight: FontWeight.bold, color: Colors.amber),
-      unitStyle: TextStyle(color: Colors.grey, fontSize: 14),
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.amber.shade800),
+      unitStyle: const TextStyle(color: Colors.grey, fontSize: 14),
     );
 
     TextStyle labelStyle = themeData?.labelStyle ?? defaultThemeData.labelStyle;
@@ -39,7 +41,7 @@ class StarRatingChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
           const SizedBox(height: 8),
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -51,14 +53,20 @@ class StarRatingChart extends SingleValueChart {
               );
             }),
           ),
-          const SizedBox(height: 2),
-          Text('${rating.toStringAsFixed(1)}/$totalStars', style: valueStyle),
-          const SizedBox(height: 2),
-          Text(unit, style: defaultThemeData.unitStyle)
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('${rating.toStringAsFixed(1)}/$totalStars',
+                  style: valueStyle)),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text(unit, style: defaultThemeData.unitStyle))
         ],
       ),
     );
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();

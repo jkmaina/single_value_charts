@@ -36,7 +36,7 @@ class StatusIndicatorsChartsDemo extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Specialized Charts Demo'),
+        title: const Text('Status Indicator Charts Demo'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -46,6 +46,7 @@ class StatusIndicatorsChartsDemo extends StatelessWidget {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             childAspectRatio: 3 / 2, // Adjust the aspect ratio as needed
+            mainAxisExtent: 200,
           ),
           itemCount: charts.length,
           itemBuilder: (context, index) {

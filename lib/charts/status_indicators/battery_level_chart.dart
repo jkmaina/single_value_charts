@@ -8,7 +8,7 @@ import 'package:single_value_charts/widgets/chart_card.dart';
 
 class BatteryLevelChart extends SingleValueChart {
   final double batteryLevel; // Battery level percentage
-    @override
+  @override
   final ChartThemeData? themeData;
 
   BatteryLevelChart({
@@ -38,29 +38,31 @@ class BatteryLevelChart extends SingleValueChart {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(label, style: labelStyle),
+          FittedBox(fit: BoxFit.contain, child: Text(label, style: labelStyle)),
           const SizedBox(height: 8),
           // Custom battery icon representation
           Stack(
             alignment: Alignment.centerLeft,
             children: [
-              Icon(Icons.battery_full, size: 50, color: Colors.grey[300]),
+              Icon(Icons.battery_full, size: 70, color: Colors.grey[300]),
               ClipRect(
                 child: Align(
                   alignment: Alignment.centerLeft,
                   widthFactor: batteryLevel / 100,
                   child: Icon(Icons.battery_full,
-                      size: 50, color: _getBatteryColor(batteryLevel)),
+                      size: 100, color: _getBatteryColor(batteryLevel)),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 4),
-          Text('${batteryLevel.toStringAsFixed(1)}%', style: valueStyle),
+          const Spacer(),
+          FittedBox(
+              fit: BoxFit.contain,
+              child: Text('${batteryLevel.toStringAsFixed(1)}%',
+                  style: valueStyle)),
         ],
       ),
     );
-    
   }
 
   Color _getBatteryColor(double level) {
@@ -73,6 +75,7 @@ class BatteryLevelChart extends SingleValueChart {
       return Colors.red; // Low battery level
     }
   }
+
   @override
   Widget buildTooltip(BuildContext context, Offset globalPosition) {
     if (!enableTooltip) return Container();
