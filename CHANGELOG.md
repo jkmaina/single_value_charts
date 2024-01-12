@@ -1,3 +1,9 @@
+
+## 1.0.2
+1. Updated resposiveness on charts on mobile
+2. Added animation to countdown charts
+3. Updated example documentation
+
 ## 1.0.1
 1. Updated the changelog
 2. Indicated platform support
